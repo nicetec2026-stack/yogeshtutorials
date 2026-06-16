@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Yogesh Tutorial & New Generation Computer's </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #2d5cb3 0%, #2a5298 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: rgb(248, 246, 246);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        
+
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+      
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(47, 88, 163, 0.9), rgba(8, 52, 128, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e3f2fd" width="1200" height="600"/><circle fill="%2342a5f5" opacity="1" cx="200" cy="200" r="100"/><circle fill="%231e88e5" opacity="1" cx="800" cy="300" r="150"/><rect fill="%2390caf9" opacity="1" x="900" y="400" width="200" height="100"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #f57b18, #ffed4e);
+            color: #314a79;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+       
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #2a5298;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .about-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .about-features i {
+            color: #2a5298;
+            margin-right: 1rem;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.226);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #2a5298;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .course-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .course-duration {
+            background: #e3f2fd;
+            color: #1e3c72;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+           
+            
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Map */
+        #map {
+            height: 300px;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo"> Yogesh Tutorial & New Generation Computer's </a>
+            
+            <div class="hamburger" id="hamburger">
+                <span>
+                </span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Learn Computer Skills From Basic to Advanced</h1>
+            <p>Transform your technical skills through immersive, expert-guided courses designed for real-world success.
+                Unlock your potential with hands-on computer training tailored to your unique learning journey.</p>
+                <a href="course.html" class="cta-button">Join Now</a>
+        </div>
+    </section>
+    
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Welcome to Yogesh Tutorial & New Generation Computer's </h3>
+                <p>With 10+ years of teaching excellence, we provide hands-on practical training in modern computer skills. Our expert instructors ensure every student masters the skills needed for today's digital world.</p>
+                <ul class="about-features">
+                    <li><i class="fas fa-check-circle"></i>10+ Years Teaching Experience</li>
+                    <li><i class="fas fa-check-circle"></i>Practical Hands-on Training</li>
+                    <li><i class="fas fa-check-circle"></i>Modern Computer Lab</li>
+                    <li><i class="fas fa-check-circle"></i>Free Job Placement/Consultancy</li>
+                    <li><i class="fas fa-check-circle"></i>Preparation of Interview </li>
+                    <li><i class="fas fa-check-circle"></i>Personality Development</li>
+                     <li><i class="fas fa-check-circle"></i>Free Weekend English Fluency Classes</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <i class="fas fa-graduation-cap" style="font-size: 10rem; color: #2a5298; opacity: 0.8;"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="container" style="background: #f8f9ff; padding: 4rem 2rem;">
+        <h2 class="section-title">Our Courses</h2>
+        <div class="courses-grid">
+            <div class="course-card">
+                <h3><i class="fas fa-laptop"></i> Basic Computer Course</h3>
+                <span class="course-duration">3 Months</span>
+                <p>Learn computer fundamentals, Windows OS, file management, and basic software usage. Perfect for beginners!</p>
+            </div>
+            <div class="course-card">
+                <h3><i class="fas fa-file-word"></i> MS Office</h3>
+                <span class="course-duration">3 Months</span>
+                <p>Master Word, Excel, and PowerPoint. Create professional documents, spreadsheets, and presentations.</p>
+            </div>
+            <div class="course-card">
+                <h3><i class="fas fa-calculator"></i> Tally Accounting</h3>
+                <span class="course-duration">6 Months</span>
+                <p>Learn professional accounting with Tally prime , GST, billing, inventory, and financial management.</p>
+            </div>
+            <div class="course-card">
+                <h3><i class="fas fa-keyboard"></i> Typing Course</h3>
+                <span class="course-duration">3 Month</span>
+                <p>Improve typing speed to 40+ WPM with English & Hindi typing practice on professional software.</p>
+            </div>
+            <div class="course-card">
+                <h3><i class="fas fa-globe"></i> Internet & Digital Skills</h3>
+                <span class="course-duration">3 Month</span>
+                <p>Master internet browsing, email, online banking, social media, and digital safety practices.</p>
+            </div>
+            <div class="course-card">
+                <h3><i class="fas fa-cog"></i> Basic Tally </h3>
+                <span class="course-duration">3 Months</span>
+                <p> Tally expert specializing in business accounts and inventory management. </p>
+            </div>
+            <div class="course-card">
+                <h3><i class="fas fa-language icon"></i> English Spoken </h3>
+                <span class="course-duration">3 Months</span>
+                <p>Learn basic to advanced spoken English with 
+grammar, pronunciation, and daily conversation 
+practice for better communication.  </div>
+            <div class="course-card">
+                <h3><i class="fas fa-user-graduate"></i> DCA & PGDCA </h3>
+                <span class="course-duration">1 Year </span>
+                <p>Master computer applications with MS Office, 
+internet, Tally basics, and programming skills 
+for professional and career growth.</div>
+        </div>
+    </section>
+
+    
