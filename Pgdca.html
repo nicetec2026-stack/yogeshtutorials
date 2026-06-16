@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGDCA - Yogesh Tutorial & New Generation Computers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f6fb;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        .logo { color: white; font-size: 1.2rem; font-weight: bold; text-decoration: none; line-height: 1.3; }
+        .logo span { display: block; font-size: 0.75rem; font-weight: 400; color: #b8d4ff; letter-spacing: 0.5px; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; }
+        .nav-menu a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-menu a:hover { color: #ffd700; }
+
+        .course-hero {
+            background: linear-gradient(rgba(30,60,114,0.82), rgba(42,82,152,0.82)),
+                        url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 7rem 2rem 5rem;
+            text-align: center;
+            color: white;
+            margin-top: 62px;
+        }
+        .course-hero .badge {
+            display: inline-block;
+            background: rgba(255,215,0,0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        .course-hero h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 0.6rem; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .price-block {
+            margin: 1.4rem auto 0;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .price-onetime { font-size: 2.8rem; font-weight: 900; color: #ffd700; }
+        .price-separator { font-size: 2rem; color: rgba(255,255,255,0.5); }
+        .price-monthly { font-size: 1.5rem; font-weight: 700; color: #b8d4ff; }
+        .price-label { font-size: 0.85rem; color: rgba(255,255,255,0.7); display: block; margin-top: 0.3rem; text-align: center; }
+
+        .grey-divider { border: none; border-top: 2px solid #d0d7e8; margin: 0; }
+
+        .page-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 7rem; }
+
+        .description-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.7s ease both;
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .card-title i {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .description-text { color: #555; font-size: 1.05rem; line-height: 1.8; }
+
+        .info-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.7s ease both;
+        }
+        .info-item { text-align: center; padding: 1rem; border-radius: 12px; background: #f4f6fb; }
+        .info-item i { font-size: 1.8rem; color: #2a5298; margin-bottom: 0.5rem; }
+        .info-item .info-value { font-size: 1.15rem; font-weight: 700; color: #1e3c72; }
+        .info-item .info-label { font-size: 0.82rem; color: #888; margin-top: 0.2rem; }
+
+        .section-heading {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .section-heading::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, #2a5298, transparent);
+            border-radius: 2px;
+        }
+
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .syllabus-module {
+            background: white;
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            border-top: 4px solid #2a5298;
+            animation: fadeInUp 0.7s ease both;
+            transition: transform 0.3s;
+        }
+        .syllabus-module:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(42,82,152,0.13); }
+        .module-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+        .module-icon {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .module-name { font-size: 1.05rem; font-weight: 700; color: #1e3c72; }
+        .module-topics { list-style: none; }
+        .module-topics li {
+            padding: 0.45rem 0;
+            border-bottom: 1px solid #eef0f8;
+            font-size: 0.93rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .module-topics li:last-child { border-bottom: none; }
+        .module-topics li::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: #2a5298;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .prime-tag {
+            display: inline-block;
+            background: linear-gradient(45deg, #fdb52f, #fdea38);
+            color: #1e3c72;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+        .benefit-item {
+            background: white;
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInUp 0.7s ease both;
+            transition: transform 0.3s;
+        }
+        .benefit-item:hover { transform: translateY(-4px); }
+        .benefit-item i { font-size: 1.4rem; color: #2a5298; width: 36px; flex-shrink: 0; }
+        .benefit-item span { font-size: 0.95rem; font-weight: 600; color: #333; }
+
+        .floating-btns {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            z-index: 999;
+        }
+        .float-btn {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: white;
+            position: relative;
+        }
+        .float-btn:hover { transform: scale(1.12); box-shadow: 0 10px 28px rgba(0,0,0,0.3); }
+        .float-btn.contact-btn { background: linear-gradient(135deg, #1e3c72, #2a5298); }
+        .float-btn.whatsapp-btn { background: #25D366; }
+        .float-btn .tooltip {
+            position: absolute;
+            right: 68px;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 0.35rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .float-btn:hover .tooltip { opacity: 1; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .course-hero h1 { font-size: 1.8rem; }
+            .price-onetime { font-size: 2rem; }
+            .price-monthly { font-size: 1.1rem; }
+            .description-card { padding: 1.8rem 1.5rem; }
+            .page-body { padding: 2rem 1rem 7rem; }
+            .nav-menu { gap: 1rem; }
+            .logo { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                Yogesh Tutorial & New Generation Computers
+                <span>Learn Computer Skills with us</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="../gallary.html#gallery">Gallery</a></li>
+                <li><a href="../contactpage.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="course-hero">
+        <div class="badge"><i class="fas fa-graduation-cap"></i> &nbsp; POST GRADUATE DIPLOMA IN COMPUTER APPLICATIONS</div>
+        <h1><i class="fas fa-laptop-code"></i> &nbsp; PGDCA</h1>
+        <div class="price-block">
+            <span class="price-onetime">₹20,500</span>
+            <span class="price-separator">/</span>
+            <span class="price-monthly">₹1,708 <small style="font-size:0.75rem; font-weight:500;">per month</small></span>
+        </div>
+        <span class="price-label">One-time fee &nbsp;|&nbsp; Monthly installment option available</span>
+    </section>
+
+    <hr class="grey-divider">
+
+    <div class="page-body">
+
+        <div class="description-card">
+            <div class="card-title">
+                <i class="fas fa-info-circle"></i>
+                Course Overview
+            </div>
+            <p class="description-text">
+                <strong>PGDCA (Post Graduate Diploma in Computer Applications)</strong> is an advanced-level computer diploma course ideal for graduates who want to deepen their technical knowledge and build a strong IT career. This course covers advanced programming languages like C++ and Java, database management systems, web designing, and system analysis. It is recognized for government and private sector IT jobs and is equivalent to an MCA first year in many institutions. Students who complete this course will have strong technical skills, practical project experience, and industry-ready knowledge. A <strong>Yogesh Tutorial Certificate</strong> is awarded upon completion along with full placement support.
+            </p>
+        </div>
+
+        <div class="info-strip">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div class="info-value">12 Months</div>
+                <div class="info-label">Course Duration</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <div class="info-value">6 Days/Week</div>
+                <div class="info-label">Class Schedule</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-sun"></i>
+                <div class="info-value">Morning & Evening</div>
+                <div class="info-label">Batch Timings</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-certificate"></i>
+                <div class="info-value">Certificate</div>
+                <div class="info-label">On Completion</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-briefcase"></i>
+                <div class="info-value">Job Assistance</div>
+                <div class="info-label">Placement Support</div>
+            </div>
+        </div>
+
+        <h2 class="section-heading"><i class="fas fa-book-open" style="color:#2a5298; font-size:1.3rem;"></i> Full Syllabus</h2>
+        <div class="syllabus-grid">
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-code"></i></div>
+                    <div class="module-name">Advanced Programming <span class="prime-tag">C++ / Java</span></div>
+                </div>
+                <ul class="module-topics">
+                    <li>C++ OOP Concepts (Class, Object)</li>
+                    <li>Inheritance & Polymorphism</li>
+                    <li>Java Basics & Syntax</li>
+                    <li>Exception Handling in Java</li>
+                    <li>Java Collections & Arrays</li>
+                    <li>File Handling Programs</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-database"></i></div>
+                    <div class="module-name">Database Management (DBMS)</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Relational Database Concepts</li>
+                    <li>SQL – DDL, DML, DCL Commands</li>
+                    <li>Joins, Views & Stored Procedures</li>
+                    <li>Normalization (1NF, 2NF, 3NF)</li>
+                    <li>MySQL / Oracle Practical</li>
+                    <li>ER Diagrams & Schema Design</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-globe"></i></div>
+                    <div class="module-name">Web Designing <span class="prime-tag">HTML/CSS</span></div>
+                </div>
+                <ul class="module-topics">
+                    <li>HTML5 Structure & Tags</li>
+                    <li>CSS3 Styling & Selectors</li>
+                    <li>Responsive Web Design</li>
+                    <li>JavaScript Basics</li>
+                    <li>Forms, Tables & Multimedia</li>
+                    <li>Website Project Publishing</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-sitemap"></i></div>
+                    <div class="module-name">System Analysis & Design</div>
+                </div>
+                <ul class="module-topics">
+                    <li>SDLC Models (Waterfall, Agile)</li>
+                    <li>Requirement Analysis Techniques</li>
+                    <li>DFD & Flowchart Making</li>
+                    <li>UML Diagrams</li>
+                    <li>Software Testing Concepts</li>
+                    <li>System Documentation</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-network-wired"></i></div>
+                    <div class="module-name">Computer Networks & OS</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Network Topologies & Types</li>
+                    <li>OSI & TCP/IP Model</li>
+                    <li>IP Addressing & Subnetting</li>
+                    <li>Operating System Concepts</li>
+                    <li>Process & Memory Management</li>
+                    <li>Linux Basics</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="module-name">Project Work & Lab</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Mini Project (Individual)</li>
+                    <li>Final Year Major Project</li>
+                    <li>Project Report Writing</li>
+                    <li>Viva / Oral Examination</li>
+                    <li>Practical Lab Assignments</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <h2 class="section-heading"><i class="fas fa-gift" style="color:#2a5298; font-size:1.3rem;"></i> What You'll Get</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-certificate"></i>
+                <span>Completion Certificate</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Job Placement Assistance</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Daily Practical Training</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-redo"></i>
+                <span>Free Topic Revision</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-book"></i>
+                <span>Printed Study Notes</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-rupee-sign"></i>
+                <span>EMI / Installment Option</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="floating-btns">
+        <a href="contactpage.html#contact" class="float-btn contact-btn" title="Contact Us">
+            <i class="fas fa-phone-alt"></i>
+            <span class="tooltip">Contact Us</span>
+        </a>
+        <a href="https://wa.me/916261731550?text=Hello%20Sir!%20%F0%9F%99%8F%20Mujhe%20aapke%20PGDCA%20Course%20ke%20baare%20me%20thodi%20jankari%20chahiye%20thi.%20%F0%9F%92%BB%20Please%20mujhe%20iska%20syllabus%20aur%20fees%20structure%20share%20kar%20dijiye.%20Thank%20you!%20%E2%9C%A8."
+           target="_blank" class="float-btn whatsapp-btn" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp Us</span>
+        </a>
+    </div>
+
+</body>
+</html>

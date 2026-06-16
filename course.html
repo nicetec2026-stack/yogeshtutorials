@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses -Yogesh Tutorial & New Generation Computer's </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;
+        }
+
+        /* Courses Hero */
+        .courses-hero {
+            background: linear-gradient(rgba(30,60,114,0.4), rgba(42,82,152,0.4)), 
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+           background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            padding: 8rem 2rem;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .courses-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .courses-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Course Categories */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #f8f9ff;
+            border: 2px solid #e3f2fd;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #1e3c72;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            border-color: #1e3c72;
+            transform: translateY(-2px);
+        }
+
+        /* Course Cards */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border-top: 5px solid #2a5298;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .course-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(110, 110, 110, 0.15);
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .course-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .course-title {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-duration {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .course-body {
+            padding: 2.5rem;
+        }
+
+        .course-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .course-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #0e0d0d;
+            display: flex;
+            align-items: center;
+        }
+
+        .course-features li:last-child {
+            border-bottom: none;
+        }
+
+        .course-features i {
+            color: #2a5298;
+            margin-right: 1rem;
+            width: 20px;
+        }
+
+        .course-cta {
+            background: linear-gradient(45deg, #fdb52f, #fdea38);
+            color: #1e3c72;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 1.5rem;
+        }
+
+        .course-cta:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Fees Table */
+        .fees-table {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin-top: 4rem;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+            margin: -3rem -3rem 2rem -3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        th, td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9ff;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .price-highlight {
+            font-weight: bold;
+            color: #2a5298;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .courses-hero h1 {
+                font-size: 2rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .back-home {
+                top: 85px;
+                left: 1rem;
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .course-body {
+                padding: 2rem 1.5rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.8rem 0.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                Yogesh Tutorial & New Generation Computer's
+            
+            </a>
+             <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="gallary.html#gallery">Gallery</a></li>
+                <li><a href="contactpage.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Courses Hero Section -->
+    <section class="courses-hero">
+        <h1>Our Complete Course Catalog</h1>
+        <p>Choose from our comprehensive range of computer courses with affordable fees and flexible timings. All courses include practical training and certification.</p>
+    </section>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Category Tabs - FIXED -->
+        <div class="category-tabs">
+            <button class="tab-btn active" data-category="all">All Courses</button>
+            <button class="tab-btn" data-category="beginner">Beginner</button>
+            <button class="tab-btn" data-category="professional">Professional</button>
+            <button class="tab-btn" data-category="short">Short Term</button>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="courses-grid" id="coursesGrid">
+            <!-- Basic Computer Course -->
+            <div class="course-card" data-category="beginner">
+                <div class="course-header">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3 class="course-title">Basic Computer Course</h3>
+                    <div class="course-price">₹3,000 </div>
+                    <span class="course-duration">3 Months</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Windows OS & File Management</li>
+                        <li><i class="fas fa-check"></i> MS Paint, Notepad, WordPad</li>
+                        <li><i class="fas fa-check"></i> English Typing</li>
+                        <li><i class="fas fa-check"></i> Hardware Introduction</li>
+                        <li><i class="fas fa-check"></i> Photoshop Pagemaker</li>
+                    </ul>
+                     <!-- English Spoken Master -->
+
+                    <button class="course-cta" onclick="enrollCourse('Basic Computer Course')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+             <div class="course-card" data-category="beginner">
+                <div class="course-header">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3 class="course-title">English Spoken Master</h3>
+                    <div class="course-price">₹6,000 </div>
+                    <span class="course-duration">4 Months</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Basic Grammar & Vocabulary</li>
+                        <li><i class="fas fa-check"></i> Daily Conversation Practice </li>
+                        <li><i class="fas fa-check"></i> Public Speaking & Confidence </li>
+                        <li><i class="fas fa-check"></i> Interview Skills & Role Play</li>
+                        <li><i class="fas fa-check"></i> Photoshop Pagemaker</li>
+                    </ul>
+
+                    <!-- DCA -->
+
+
+                    <button class="course-cta" onclick="enrollCourse('English Spoken Master')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+             <div class="course-card" data-category="professional">
+                <div class="course-header">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3 class="course-title">DCA </h3>
+                    <div class="course-price">₹18,500 </div>
+                    <span class="course-duration">12 Months</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> fundamentals of Computers</li>
+                        <li><i class="fas fa-check"></i> MS office Suites</li>
+                        <li><i class="fas fa-check"></i> Oprating System (Window)  </li>
+                        <li><i class="fas fa-check"></i> Internt & E-Commmerce </li>
+                        <li><i class="fas fa-check"></i> Desktop Publishing(DTP)</li>
+                    </ul>
+
+                    <!-- PGDCA -->
+                    <button class="course-cta" onclick="enrollCourse('DCA')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+             <div class="course-card" data-category="professional">
+                <div class="course-header">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3 class="course-title">PGDCA</h3>
+                    <div class="course-price">₹20500</div>
+                    <span class="course-duration">12 Months</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Advanced Programming (C++/Java)</li>
+                        <li><i class="fas fa-check"></i> Database Management (DBMS) </li>
+                        <li><i class="fas fa-check"></i> Web Designing (HTML/CSSS)</li>
+                        <li><i class="fas fa-check"></i> System Analysis & Designm</li>
+                        <li><i class="fas fa-check"></i> Project Work & Lab </li>
+                    </ul>
+                    
+                    <button class="course-cta" onclick="enrollCourse('PGDCA')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+
+
+
+            <!-- MS Office -->
+            <div class="course-card" data-category="professional">
+                <div class="course-header">
+                    <i class="fas fa-file-alt"></i>
+                    <h3 class="course-title">MS Office Master</h3>
+                    <div class="course-price">₹3,000</div>
+                    <span class="course-duration">3 Months</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> MS Word (Advanced)</li>
+                        <li><i class="fas fa-check"></i> MS Excel (Formulas, Charts)</li>
+                        <li><i class="fas fa-check"></i> MS PowerPoint (Animations)</li>
+                        <li><i class="fas fa-check"></i> Practical Projects</li>
+                        <li><i class="fas fa-check"></i> Lifetime Access to Notes</li>
+                    </ul>
+                    <button class="course-cta" onclick="enrollCourse('MS Office Master')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tally -->
+            <div class="course-card" data-category="professional">
+                <div class="course-header">
+                    <i class="fas fa-calculator"></i>
+                    <h3 class="course-title">Tally Prime with GST</h3>
+                    <div class="course-price">₹12000</div>
+                    <span class="course-duration">8 Months</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Complete Accounting</li>
+                        <li><i class="fas fa-check"></i> GST Filing & Returns</li>
+                        <li><i class="fas fa-check"></i> Inventory Management</li>
+                        <li><i class="fas fa-check"></i> Payroll Processing</li>
+                        <li><i class="fas fa-check"></i> Job Placement Assistance</li>
+                    </ul>
+                    <button class="course-cta" onclick="enrollCourse('Tally Prime with GST')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Typing -->
+            <div class="course-card" data-category="short">
+                <div class="course-header">
+                    <i class="fas fa-keyboard"></i>
+                    <h3 class="course-title">Typing Master</h3>
+                    <div class="course-price">₹2,000</div>
+                    <span class="course-duration">1 Month</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> English Typing (40+ WPM)</li>
+                        <li><i class="fas fa-check"></i> Hindi Typing (Kruti Dev)</li>
+                        <li><i class="fas fa-check"></i> Typing Software Practice</li>
+                        <li><i class="fas fa-check"></i> Speed Test Certificate</li>
+                    </ul>
+                    <button class="course-cta" onclick="enrollCourse('Typing Master')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Internet Skills -->
+            <div class="course-card" data-category="beginner short">
+                <div class="course-header">
+                    <i class="fas fa-globe"></i>
+                    <h3 class="course-title">Internet & Digital Skills</h3>
+                    <div class="course-price">₹3,000</div>
+                    <span class="course-duration">1 Month</span>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li><i class="fas fa-check"></i> Internet Browsing & Search</li>
+                        <li><i class="fas fa-check"></i> Email Management</li>
+                        <li><i class="fas fa-check"></i> Online Banking Safety</li>
+                        <li><i class="fas fa-check"></i> Social Media Basics</li>
+                        <li><i class="fas fa-check"></i> Cyber Security Awareness</li>
+                    </ul>
+                    <button class="course-cta" onclick="enrollCourse('Internet & Digital Skills')">
+                        More info <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WORKING CATEGORY FILTER SCRIPT -->
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const cards = document.querySelectorAll('.course-card');
+        let currentIndex = 0;
+        let autoTimer;
+
+        // Filter function
+        function filterCourses(index) {
+            const category = tabs[index].getAttribute('data-category');
+            
+            // Remove active from all tabs, add to current
+            tabs.forEach(t => t.classList.remove('active'));
+            tabs[index].classList.add('active');
+
+            // Filter cards with animation
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category || cardCat.includes(category)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'none';
+                    card.offsetHeight; // Trigger reflow
+                    card.style.animation = 'fadeInUp 0.6s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Auto timer
+        function startTimer() {
+            autoTimer = setInterval(() => {
+                currentIndex = (currentIndex + 1) % tabs.length;
+                filterCourses(currentIndex);
+            }, 10000);
+        }
+
+        // Manual click events
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                clearInterval(autoTimer);
+                currentIndex = index;
+                filterCourses(index);
+                startTimer();
+            });
+        });
+
+        // Enroll function: map course names to existing subject pages
+        function enrollCourse(courseName) {
+            const coursePageMap = {
+                'Basic Computer Course': 'basic-course.html',
+                'English Spoken Master': 'English spoken.html',
+                'DCA': 'DCA.html',
+                'PGDCA': 'Pgdca.html',
+                'MS Office Master': 'Ms word course discription - Copy.html',
+                'Tally Prime with GST': 'Tally prime.html',
+                'Typing Master': 'Typing.html',
+                'Internet & Digital Skills': 'Internet.html'
+            };
+
+            const page = coursePageMap[courseName];
+            if (page) {
+                window.location.href = `subject/${page}`;
+            } else {
+                const slug = courseName
+                    .toString()
+                    .toLowerCase()
+                    .trim()
+                    .replace(/&/g, 'and')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                window.location.href = `subject/${slug}.html`;
+            }
+        }
+
+        // Initialize
+        startTimer();
+    </script>
+</body>
+</html>

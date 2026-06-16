@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Office Master - Nicetec Computer Education</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f6fb;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            line-height: 1.3;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #b8d4ff;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover { color: #ffd700; }
+
+        /* ── Hero Banner ── */
+        .course-hero {
+            background: linear-gradient(rgba(30,60,114,0.82), rgba(42,82,152,0.82)),
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 7rem 2rem 5rem;
+            text-align: center;
+            color: white;
+            margin-top: 62px;
+        }
+
+        .course-hero .badge {
+            display: inline-block;
+            background: rgba(255,215,0,0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .course-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* ── Price Block ── */
+        .price-block {
+            margin: 1.4rem auto 0;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .price-onetime {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #ffd700;
+        }
+
+        .price-separator {
+            font-size: 2rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .price-monthly {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #b8d4ff;
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            display: block;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+
+        /* ── Divider ── */
+        .grey-divider {
+            border: none;
+            border-top: 2px solid #d0d7e8;
+            margin: 0;
+        }
+
+        /* ── Main Layout ── */
+        .page-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem 7rem;
+        }
+
+        /* ── Description Card ── */
+        .description-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.7s ease both;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .card-title i {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .description-text {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* ── Info Strip ── */
+        .info-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.7s ease both;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 12px;
+            background: #f4f6fb;
+        }
+
+        .info-item i {
+            font-size: 1.8rem;
+            color: #2a5298;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item .info-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e3c72;
+        }
+
+        .info-item .info-label {
+            font-size: 0.82rem;
+            color: #888;
+            margin-top: 0.2rem;
+        }
+
+        /* ── Section Heading ── */
+        .section-heading {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .section-heading::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, #2a5298, transparent);
+            border-radius: 2px;
+        }
+
+        /* ── Syllabus Grid ── */
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .syllabus-module {
+            background: white;
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            border-top: 4px solid #2a5298;
+            animation: fadeInUp 0.7s ease both;
+            transition: transform 0.3s;
+        }
+
+        .syllabus-module:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(42,82,152,0.13);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .module-icon {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .module-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e3c72;
+        }
+
+        .module-topics {
+            list-style: none;
+        }
+
+        .module-topics li {
+            padding: 0.45rem 0;
+            border-bottom: 1px solid #eef0f8;
+            font-size: 0.93rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .module-topics li:last-child { border-bottom: none; }
+
+        .module-topics li::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: #2a5298;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── Benefits Grid ── */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .benefit-item {
+            background: white;
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInUp 0.7s ease both;
+            transition: transform 0.3s;
+        }
+
+        .benefit-item:hover { transform: translateY(-4px); }
+
+        .benefit-item i {
+            font-size: 1.4rem;
+            color: #2a5298;
+            width: 36px;
+            flex-shrink: 0;
+        }
+
+        .benefit-item span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* ── Floating Buttons ── */
+        .floating-btns {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: white;
+            position: relative;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+        }
+
+        .float-btn.contact-btn {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+
+        .float-btn.whatsapp-btn {
+            background: #25D366;
+        }
+
+        .float-btn .tooltip {
+            position: absolute;
+            right: 68px;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 0.35rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .float-btn:hover .tooltip { opacity: 1; }
+
+        /* ── Animations ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .course-hero h1  { font-size: 2rem; }
+            .price-onetime   { font-size: 2rem; }
+            .price-monthly   { font-size: 1.1rem; }
+            .description-card { padding: 1.8rem 1.5rem; }
+            .page-body       { padding: 2rem 1rem 7rem; }
+            .nav-menu        { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Navbar ── -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                Yogesh Tutorial & New Generation Computers
+                <span>Learn Computer Skills with us</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="../gallary.html#gallery">Gallery</a></li>
+                <li><a href="../contactpage.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <section class="course-hero">
+        <div class="badge"><i class="fas fa-star"></i> &nbsp; PROFESSIONAL COURSE</div>
+        <h1><i class="fas fa-file-alt"></i> &nbsp; MS Office Master</h1>
+
+        <div class="price-block">
+            <span class="price-onetime">₹5,000</span>
+            <span class="price-separator">/</span>
+            <span class="price-monthly">₹2,500 <small style="font-size:0.75rem; font-weight:500;">per month</small></span>
+        </div>
+        <span class="price-label">One-time fee &nbsp;|&nbsp; Monthly installment option available</span>
+    </section>
+
+    <!-- ── Grey Divider ── -->
+    <hr class="grey-divider">
+
+    <!-- ── Page Body ── -->
+    <div class="page-body">
+
+        <!-- Description -->
+        <div class="description-card">
+            <div class="card-title">
+                <i class="fas fa-info-circle"></i>
+                Course Overview
+            </div>
+            <p class="description-text">
+                <strong>MS Word</strong> is a professional-level 2-month course designed to make you completely confident with Microsoft Word tools used in every office, school, bank, and business. Whether you are a student preparing for a job, a working professional wanting to upgrade your skills, or a business owner managing your own work — this course covers everything. You will master <strong>MS Word</strong> with advanced features, real projects, and practical assignments. On completion, you will receive a <strong>Nicetec Certificate</strong> and lifetime access to study notes.
+            </p>
+        </div>
+
+        <!-- Quick Info Strip -->
+        <div class="info-strip">
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div class="info-value">2 Months</div>
+                <div class="info-label">Course Duration</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <div class="info-value">6 Days/Week</div>
+                <div class="info-label">Class Schedule</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-sun"></i>
+                <div class="info-value">Morning & Evening</div>
+                <div class="info-label">Batch Timings</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-certificate"></i>
+                <div class="info-value">Certificate</div>
+                <div class="info-label">On Completion</div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-language"></i>
+                <div class="info-value">Hindi + English</div>
+                <div class="info-label">Teaching Medium</div>
+            </div>
+        </div>
+
+        <!-- Syllabus -->
+        <h2 class="section-heading"><i class="fas fa-book-open" style="color:#2a5298; font-size:1.3rem;"></i> Full Syllabus</h2>
+        <div class="syllabus-grid">
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-file-word"></i></div>
+                    <div class="module-name">MS Word (Advanced)</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Document Formatting & Styles</li>
+                    <li>Tables, Headers & Footers</li>
+                    <li>Mail Merge & Templates</li>
+                    <li>Page Layout & Columns</li>
+                    <li>Track Changes & Comments</li>
+                    <li>Watermarks & Page Borders</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-file-excel"></i></div>
+                    <div class="module-name">MS Excel (Formulas & Charts)</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Cells, Rows & Columns Basics</li>
+                    <li>SUM, AVERAGE, IF, VLOOKUP</li>
+                    <li>Conditional Formatting</li>
+                    <li>Charts & Graphs Creation</li>
+                    <li>Data Sorting & Filtering</li>
+                    <li>Pivot Tables Introduction</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-file-powerpoint"></i></div>
+                    <div class="module-name">MS PowerPoint (Animations)</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Slide Design & Themes</li>
+                    <li>Text, Images & Icons</li>
+                    <li>Slide Transitions & Animations</li>
+                    <li>SmartArt & Diagrams</li>
+                    <li>Presenter View & Slide Show</li>
+                    <li>Exporting to PDF & Video</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-tasks"></i></div>
+                    <div class="module-name">Practical Projects</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Office Letter Writing (Word)</li>
+                    <li>Salary Sheet Making (Excel)</li>
+                    <li>Company Presentation (PPT)</li>
+                    <li>Invoice & Bill Format</li>
+                    <li>Resume / CV Creation</li>
+                    <li>Data Entry Practice</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="module-name">MS Outlook & Email</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Setting Up Email Account</li>
+                    <li>Sending Professional Emails</li>
+                    <li>Managing Inbox & Folders</li>
+                    <li>Calendar & Reminders</li>
+                    <li>Attaching Files & Documents</li>
+                </ul>
+            </div>
+
+            <div class="syllabus-module">
+                <div class="module-header">
+                    <div class="module-icon"><i class="fas fa-infinity"></i></div>
+                    <div class="module-name">Lifetime Access & Notes</div>
+                </div>
+                <ul class="module-topics">
+                    <li>Printed Study Material</li>
+                    <li>Formula Sheet for Excel</li>
+                    <li>Shortcut Keys Booklet</li>
+                    <li>Practice Exercise Files</li>
+                    <li>Free Revision Classes</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- What You'll Get -->
+        <h2 class="section-heading"><i class="fas fa-gift" style="color:#2a5298; font-size:1.3rem;"></i> What You'll Get</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-certificate"></i>
+                <span>Completion Certificate</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-book"></i>
+                <span>Lifetime Access to Notes</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Daily Practical Training</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-redo"></i>
+                <span>Free Topic Revision</span>
+           </div>
+            <div class="benefit-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Job-Ready Skills</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-rupee-sign"></i>
+                <span>EMI / Installment Option</span>
+            </div>
+        </div>
+
+    </div>
+    <!-- end page-body -->
+
+    <!-- ── Floating Buttons ── -->
+    <div class="floating-btns">
+        <a href="contactpage.html#contact" class="float-btn contact-btn" title="Contact Us">
+            <i class="fas fa-phone-alt"></i>
+            <span class="tooltip">Contact Us</span>
+        </a>
+        <a href="https://wa.me/916261731550?text=Hello%20Sir!%20%F0%9F%99%8F%20Mujhe%20aapke%20MS%20Office%20Course%20ke%20baare%20me%20thodi%20jankari%20chahiye%20thi.%20%F0%9F%93%9A%20Please%20mujhe%20syllabus%20aur%20batch%20timings%20share%20kar%20dijiye.%20Thank%20you!%20%E2%9C%A8"
+           target="_blank" class="float-btn whatsapp-btn" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp Us</span>
+        </a>
+    </div>
+
+</body>
+</html>
